@@ -1,0 +1,72 @@
+{
+  "name": "@jtbennett/create-ts-project",
+  "version": "1.0.0-beta24",
+  "keywords": [
+    "typescript",
+    "monorepo",
+    "generator",
+    "create",
+    "project"
+  ],
+  "description": "Create TypeScript monorepos with project references, eslint, prettier, and jest configured and ready for development.",
+  "author": "John Bennett <john@jtbennett.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jtbennett/create-ts-project.git",
+    "directory": "packages/create-ts-project"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">=12.0.0"
+  },
+  "bugs": {
+    "url": "https://github.com/jtbennett/create-ts-project/issues"
+  },
+  "files": [
+    "lib/**/*",
+    "template/**/*"
+  ],
+  "bin": "./lib/index.js",
+  "types": "lib/index.d.ts",
+  "scripts": {
+    "dev": "yarn build && node ./lib/index.js",
+    "lint": "eslint ./src --ext .ts --env node",
+    "test": "jest --passWithNoTests --rootDir ./",
+    "clean": "rimraf ./lib ./tsconfig.tsBuildInfo",
+    "build": "tsc --build ./tsconfig.build.json && chmod +x ./lib/index.js",
+    "verify": "yarn lint --max-warnings 0 && yarn test && yarn clean && yarn build",
+    "purge": "yarn clean && rimraf ./coverage ./node_modules"
+  },
+  "dependencies": {
+    "@jtbennett/ts-project-cli-utils": "workspace:*",
+    "chalk": "^4.0.0",
+    "fs-extra": "^9.0.0",
+    "semver": "7.3.2",
+    "validate-npm-package-name": "3.0.0",
+    "yargs": "^15.3.1"
+  },
+  "devDependencies": {
+    "@types/fs-extra": "^9.0.0",
+    "@types/semver": "5.5.0",
+    "@types/validate-npm-package-name": "^3.0.0",
+    "@types/yargs": "^15.0.0",
+    "eslint": "^6.8.0",
+    "jest": "26.3.0",
+    "rimraf": "^3.0.2",
+    "ts-jest": "^24.0.2",
+    "typescript": "~4.0.2"
+  },
+  "jest": {
+    "preset": "ts-jest",
+    "testEnvironment": "node",
+    "testMatch": [
+      "<rootDir>/src/**/*.test.ts"
+    ],
+    "moduleNameMapper": {
+      "@jtbennett/ts-project-cli-utils": "<rootDir>/../ts-project-cli-utils/src"
+    }
+  },
+  "tspConfig": {
+    "deploy": true
+  }
+}

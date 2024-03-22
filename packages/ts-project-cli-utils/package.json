@@ -1,0 +1,52 @@
+{
+  "name": "@jtbennett/ts-project-cli-utils",
+  "version": "1.0.0-beta24",
+  "keywords": [],
+  "description": "Command line utilities used by CLIs in https://github.com/jtbennett/create-ts-project",
+  "author": "John Bennett <john@jtbennett.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jtbennett/create-ts-project.git",
+    "directory": "packages/ts-project-cli-utils"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">=12.0.0"
+  },
+  "bugs": {
+    "url": "https://github.com/jtbennett/create-ts-project/issues"
+  },
+  "files": [
+    "lib/**/*"
+  ],
+  "main": "./lib/index.js",
+  "types": "lib/index.d.ts",
+  "scripts": {
+    "dev": "echo 'This is a library package. Nothing to run. Building in watch mode...' && yarn build --watch --preserveWatchOutput",
+    "lint": "eslint ./src --ext .ts --env node",
+    "test": "jest --passWithNoTests --rootDir ./",
+    "clean": "rimraf ./lib ./tsconfig.tsBuildInfo",
+    "build": "tsc --build ./tsconfig.build.json",
+    "verify": "yarn lint --max-warnings 0 && yarn test && yarn clean && yarn build",
+    "purge": "yarn clean && rimraf ./coverage ./node_modules"
+  },
+  "dependencies": {
+    "chalk": "^4.0.0",
+    "fs-extra": "^9.0.0",
+    "yargs": "^15.3.1"
+  },
+  "devDependencies": {
+    "eslint": "^6.8.0",
+    "jest": "26.3.0",
+    "rimraf": "^3.0.2",
+    "ts-jest": "^26.2.0",
+    "typescript": "~4.0.2"
+  },
+  "jest": {
+    "preset": "ts-jest",
+    "testEnvironment": "node",
+    "testMatch": [
+      "<rootDir>/src/**/*.test.ts"
+    ]
+  }
+}
